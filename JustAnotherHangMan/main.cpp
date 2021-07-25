@@ -15,6 +15,7 @@ string chooseSecretWord();
 void replaceDashes(char guessWord[], int length);
 void displayWord(string word, int length);
 int isGuessTrue(string secretWord, char guessWord[], char letter);
+bool shouldStopGame(char guessWord[], int length);
 
 int main(int argc, const char * argv[]) {
     int maxTries = 5;
@@ -40,28 +41,42 @@ int main(int argc, const char * argv[]) {
         cin >> guessLetter;
         
         bool shouldContinue = false;
-        if (isGuessTrue(guessWord, playWord, guessLetter)) {
-            for (int i = 0; i < guessWord.length(); i++) {
-                if (playWord[i] == '-') {
-                    shouldContinue = true;
-                }
-            }
-            cout << "Correct!!!" << endl;
-        } else {
+        
+        int guessResult = isGuessTrue(guessWord, playWord, guessLetter);
+        
+        if (guessResult == 0) {
             shouldContinue = true;
             remainingTries -= 1;
             cout << "Wrong!!!" << endl;
         }
         
+        if (guessResult == 1) {
+            cout << "Correct!!!" << endl;
+        }
+        
+        if (guessResult == 2) {
+            cout << "You have guessed this letter already!!!" << endl;
+        }
+        
         cout << "------------------------\n" << endl;
         
-        if (!shouldContinue) {
+        if (shouldStopGame(playWord, guessLetter)) {
             break;
         }
     }
     
-    string endGameText = (remainingTries > 0) ? "Win!!!" : "You died (Secret word is " + guessWord + ").";
+    string endGameText = (remainingTries > 0) ? "Win!!!" : "You died";
     cout << endGameText << endl;
+    cout << "Secret word is " + guessWord + ".\n" << endl;
+}
+
+bool shouldStopGame(char guessWord[], int length) {
+    for (int i = 0; i < length; i++) {
+        if (guessWord[i] == '-') {
+            return false;
+        }
+    }
+    return true;
 }
 
 int isGuessTrue(string secretWord, char guessWord[], char letter) {
