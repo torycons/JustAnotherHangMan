@@ -105,7 +105,7 @@ string chooseSecretWord() {
 void displayGameDetail(int maxTries) {
     cout << "++++++++++++++++++++++++++++++++++++++" << endl;
     cout << "Welcome to JustAnotherHangMan" << endl;
-    cout << "You can guess the secret word " << maxTries << " times. If you can't, you will die" << endl;
-    cout << "Let's started !!!!" << endl;
+    cout << "You can guess the secret word for " << maxTries << " times. If you can't, you will die" << endl;
+    cout << "Let's get started !!!!" << endl;
     cout << "++++++++++++++++++++++++++++++++++++++" << endl;
 }
