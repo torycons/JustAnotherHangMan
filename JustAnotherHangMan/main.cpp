@@ -53,7 +53,7 @@ int main(int argc, const char * argv[]) {
             cout << "Wrong!!!" << endl;
         }
         
-        cout << "------------------------" << endl;
+        cout << "------------------------\n" << endl;
         
         if (!shouldContinue) {
             break;
@@ -107,5 +107,5 @@ void displayGameDetail(int maxTries) {
     cout << "Welcome to JustAnotherHangMan" << endl;
     cout << "You can guess the secret word for " << maxTries << " times. If you can't, you will die" << endl;
     cout << "Let's get started !!!!" << endl;
-    cout << "++++++++++++++++++++++++++++++++++++++" << endl;
+    cout << "++++++++++++++++++++++++++++++++++++++\n" << endl;
 }
